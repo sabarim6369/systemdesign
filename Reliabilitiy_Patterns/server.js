@@ -1,6 +1,7 @@
 import express from "express";
 import crypto from "crypto";
 import redisClient from "./redisClient.js";
+import { resolve } from "dns";
 
 const app = express();
 
@@ -135,17 +136,13 @@ app.post("/payments", async (req, res) => {
 });
 
 
-// ========================================
-// FAKE PAYMENT PROCESSING
-// ========================================
 
 async function processPayment(amount) {
 
-    // Simulate payment processing
     await new Promise(resolve => {
         setTimeout(resolve, 3000);
     });
-
+  
 
     const paymentId =
         crypto.randomUUID();
